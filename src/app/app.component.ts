@@ -12,8 +12,19 @@ export class AppComponent {
   title = 'app';
 
   // this handles data from the form coming from the frontend i.e. app.component.html
-  onSubmit(data: NgForm){
-  console.log(data.value)
-}
+  // Not receiving form data but using two-way binding with "model"
+  //  onSubmit(data: NgForm){
+  // console.log(data.value)
+  // }
+
+  onSubmit(){
+    console.log(this.model)
+  }
+
+  // model could be called potato and is like binding data to this "record"
+  model: object = {
+    first_name: "Bob",
+    last_name: "Smith"
+  }
 
 }

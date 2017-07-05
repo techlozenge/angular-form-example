@@ -3,9 +3,13 @@
   <!-- ngForm will bind all fields to this form 
 
   (ngSubmit) send the data to our backend app.component.ts
+
+  Remove this because we're no longer passing anything in. Using twoway data binding we are 
+  going directly to the "model"
+  (ngSubmit)="onSubmit(sampleForm)"
   -->
 
-  <form (ngSubmit)="onSubmit(sampleForm)" class="form-horizontal" #sampleForm="ngForm">
+  <form (ngSubmit)="onSubmit()" class="form-horizontal" #sampleForm="ngForm">
 
 <!-- 
 use #sampleForm to obtain fields on the backend
@@ -14,19 +18,24 @@ Update our input fields to take advantage of the template variable we declared a
 we are adding ngModel and #field_name="ngModel". This allows us to specify what the field should be refered to in our template when the form is submitted
 
 The name attribute should match he #field_name attribute. This lets the model know how to get its value
+
+Took out these and instead binding to "model" on backend:
+ngModel #first_name="ngModel"
+ngModel #last_name="ngModel"
+NOTE: Since we are bound to our model the changes are reflected in the model itself and we no longer need to rely on our template to get the data from the form
  -->
 
     <div class="form-group">
       <label for="first_name" class="col-sm-2 control-label">First Name</label>
       <div class="col-sm-10">
-        <input type="text" ngModel #first_name="ngModel" name="first_name" class="form-control" id="first_name" placeholder="e.g. Eric">
+        <input type="text" [(ngModel)]="model.first_name" name="first_name" class="form-control" id="first_name" placeholder="e.g. Eric">
       </div>
     </div>
 
      <div class="form-group">
       <label for="last_name" class="col-sm-2 control-label">Last Name</label>
       <div class="col-sm-10">
-        <input type="text" ngModel #last_name="ngModel" name="last_name" class="form-control" id="last_name" placeholder="e.g. Schwartz">
+        <input type="text" [(ngModel)]="model.last_name" name="last_name" class="form-control" id="last_name" placeholder="e.g. Schwartz">
       </div>
     </div>
 
